@@ -16,4 +16,9 @@ public:
 private:
 	int m_gameGraphHandle;
 	int m_gameFontHandle;
+	VECTOR initCamPos;
+	VECTOR initCamTarget;
+	float angle;
+	float radius;
+	float deltaValue;
 };

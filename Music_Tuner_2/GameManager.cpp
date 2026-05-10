@@ -19,6 +19,8 @@ void GameManager::Initialize() {
 	}
 	SetDrawScreen(DX_SCREEN_BACK);
 
+	SetWaitVSyncFlag(TRUE);
+
 	//ChangeState(std::make_unique<TitleState>(this));
 	PushState(std::make_unique<TitleState>(this));
 	currentState()->Init();
@@ -34,8 +36,8 @@ void GameManager::Update() {
 	UpdateInputState();
 
 	//deltaTime‚ÌŒvŽZ
-	float nowTime = GetNowCount();
-	float deltaTime = (nowTime - m_prevTime) / 1000.0f;
+	LONGLONG nowTime = GetNowHiPerformanceCount();
+	float deltaTime = (nowTime - m_prevTime) / 1000000.0f;
 	m_prevTime = nowTime;
 
 	//Scene‚ÌUpdate
