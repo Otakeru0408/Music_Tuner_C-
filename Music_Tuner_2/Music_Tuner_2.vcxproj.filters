@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="0_MainFile">
+      <UniqueIdentifier>{10ac63ba-4565-47d2-9763-9395a3b2ca42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_GameManager">
+      <UniqueIdentifier>{ff0f7b8e-eaf0-424e-b487-6a9549c6c0a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_StateInterface">
+      <UniqueIdentifier>{4f81b76b-08cb-4a8f-a48f-643f7b8dfb4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_TitleState">
+      <UniqueIdentifier>{ca8cbe51-3c81-4e7e-b8c7-5347be46ff39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_InGameState">
+      <UniqueIdentifier>{b822709c-c96d-4c5d-9bfd-ebf02bd66cc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_ResultState">
+      <UniqueIdentifier>{e1282962-d36e-413c-9b5d-d29baaf3ae37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,13 +45,46 @@
     <ClInclude Include="Music_Tuner_2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>0_MainFile</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>1_GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameState.h">
+      <Filter>2_StateInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="InputState.h">
+      <Filter>2_StateInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleState.h">
+      <Filter>3_TitleState</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultState.h">
+      <Filter>5_ResultState</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameState.h">
+      <Filter>4_InGameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Music_Tuner_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>0_MainFile</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>1_GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleState.cpp">
+      <Filter>3_TitleState</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultState.cpp">
+      <Filter>5_ResultState</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameState.cpp">
+      <Filter>4_InGameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

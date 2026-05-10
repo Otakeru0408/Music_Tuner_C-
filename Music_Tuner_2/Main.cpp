@@ -1,18 +1,23 @@
 #include "DxLib.h"
+#include "GameManager.h"
+#include "GameData.h"
 
-// プログラムは WinMain から始まります
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
-	{
-		return -1;			// エラーが起きたら直ちに終了
+	ChangeWindowMode(TRUE);
+	SetGraphMode(GameData::windowWidth, GameData::windowHeight, 32);
+	GameManager gameManager; // GameManagerオブジェクトを生成
+
+	gameManager.Initialize(); // ゲームの初期化
+
+	// ゲームループ
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0
+		&& !gameManager.IsGameFinished()) {
+		gameManager.Update(); // 更新
+		gameManager.Draw();   // 描画
 	}
 
-	DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
+	gameManager.Finalize(); // ゲームの終了処理
 
-	WaitKey();				// キー入力待ち
-
-	DxLib_End();				// ＤＸライブラリ使用の終了処理
-
-	return 0;				// ソフトの終了 
+	return 0;
 }
