@@ -1,4 +1,7 @@
 #pragma once
+#include <utility>
+#include <tuple>
+
 struct InputState {
 	int key[256];
 	int prevKey[256];
@@ -14,5 +17,11 @@ struct InputState {
 	bool IsKeyUp(int key_code)const
 	{
 		return key[key_code] == 0 && prevKey[key_code] >= 1;
+	}
+	std::tuple<int, int> GetMousePos() const
+	{
+		int x, y;
+		GetMousePoint(&x, &y);
+		return { x,y };
 	}
 };

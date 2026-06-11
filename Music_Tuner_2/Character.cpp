@@ -38,15 +38,16 @@ void Character::Update(const InputState* input, float deltaTime)
 	SetPosition(Position);
 
 	//rotation
-	if (input->IsKeyStay(KEY_INPUT_Q)) {
+	/*if (input->IsKeyStay(KEY_INPUT_Q)) {
 		Rotation = VAdd(Rotation, VGet(0.0f, DX_PI_F / 180.0f * 90.0f * deltaTime, 0.0f));
 	}
 	if (input->IsKeyStay(KEY_INPUT_E)) {
 		Rotation = VAdd(Rotation, VGet(0.0f, -DX_PI_F / 180.0f * 90.0f * deltaTime, 0.0f));
 	}
 
-	SetRotation(Rotation);
-
+	SetRotation(Rotation);*/
+	auto [mx, my] = input->GetMousePos();
+	//ここでマウスの左右移動から視点を回転させたい。
 
 	Actor::Update(input, deltaTime);
 }
