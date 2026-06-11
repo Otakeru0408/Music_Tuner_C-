@@ -146,7 +146,7 @@
 //#define DX_NON_BULLET_PHYSICS
 
 // ＦＢＸファイルを読み込む機能を使用する方は次のコメントを外してください( 使用には FBX SDK のセットアップが必要です )
-//#define DX_LOAD_FBX_MODEL
+#define DX_LOAD_FBX_MODEL
 
 // ビープ音機能がいらない方は次のコメントを外してください
 //#define DX_NON_BEEP
@@ -204,44 +204,44 @@
 //#define DX_NON_WINDOW
 
 #ifndef __cplusplus
-	#ifndef DX_COMPILE_TYPE_C_LANGUAGE
-		#define DX_COMPILE_TYPE_C_LANGUAGE
-	#endif // DX_COMPILE_TYPE_C_LANGUAGE
+#ifndef DX_COMPILE_TYPE_C_LANGUAGE
+#define DX_COMPILE_TYPE_C_LANGUAGE
+#endif // DX_COMPILE_TYPE_C_LANGUAGE
 #endif // __cplusplus
 
 #ifdef DX_COMPILE_TYPE_C_LANGUAGE
-	#ifndef DX_NON_NAMESPACE
-		#define DX_NON_NAMESPACE
-	#endif // DX_NON_NAMESPACE
+#ifndef DX_NON_NAMESPACE
+#define DX_NON_NAMESPACE
+#endif // DX_NON_NAMESPACE
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
 #ifndef __APPLE__
 #ifndef __ANDROID__
-	#define WINDOWS_DESKTOP_OS
+#define WINDOWS_DESKTOP_OS
 #endif // __ANDROID__
 #endif // __APPLE__
 
 #if defined( DX_GCC_COMPILE ) || defined( __ANDROID__ ) || defined( __APPLE__ ) || defined( BC2_COMPILER )
-	#define USE_ULL
+#define USE_ULL
 #endif
 
 
 #ifndef WINDOWS_DESKTOP_OS
-	#ifndef DX_NON_BEEP
-		#define DX_NON_BEEP
-	#endif // DX_NON_BEEP
-	#ifndef DX_NON_ACM
-		#define DX_NON_ACM
-	#endif // DX_NON_ACM
-	#ifndef DX_NON_DSHOW_MP3
-		#define DX_NON_DSHOW_MP3
-	#endif // DX_NON_DSHOW_MP3
-	#ifndef DX_NON_DSHOW_MOVIE
-		#define DX_NON_DSHOW_MOVIE
-	#endif // DX_NON_DSHOW_MOVIE
-	#ifndef DX_NON_MEDIA_FOUNDATION
-		#define DX_NON_MEDIA_FOUNDATION
-	#endif // DX_NON_MEDIA_FOUNDATION
+#ifndef DX_NON_BEEP
+#define DX_NON_BEEP
+#endif // DX_NON_BEEP
+#ifndef DX_NON_ACM
+#define DX_NON_ACM
+#endif // DX_NON_ACM
+#ifndef DX_NON_DSHOW_MP3
+#define DX_NON_DSHOW_MP3
+#endif // DX_NON_DSHOW_MP3
+#ifndef DX_NON_DSHOW_MOVIE
+#define DX_NON_DSHOW_MOVIE
+#endif // DX_NON_DSHOW_MOVIE
+#ifndef DX_NON_MEDIA_FOUNDATION
+#define DX_NON_MEDIA_FOUNDATION
+#endif // DX_NON_MEDIA_FOUNDATION
 #endif // WINDOWS_DESKTOP_OS
 
 #if defined( __ANDROID__ ) || defined( __APPLE__ )
@@ -281,165 +281,165 @@
 #endif
 
 #ifdef DX_NON_WINDOW
-	#ifndef DX_NON_GRAPHICS
-		#define DX_NON_GRAPHICS
-	#endif
-	#ifndef DX_NON_SOUND
-		#define DX_NON_SOUND
-	#endif
-	#ifndef DX_NON_INPUT
-		#define DX_NON_INPUT
-	#endif
-	#ifndef DX_NON_NETWORK
-		#define DX_NON_NETWORK
-	#endif
+#ifndef DX_NON_GRAPHICS
+#define DX_NON_GRAPHICS
+#endif
+#ifndef DX_NON_SOUND
+#define DX_NON_SOUND
+#endif
+#ifndef DX_NON_INPUT
+#define DX_NON_INPUT
+#endif
+#ifndef DX_NON_NETWORK
+#define DX_NON_NETWORK
+#endif
 #endif // DX_NON_WINDOW
 
 #ifdef DX_NON_GRAPHICS
-	#ifndef DX_NON_FONT
-		#define DX_NON_FONT
-	#endif
-	#ifndef DX_NON_MOVIE
-		#define DX_NON_MOVIE
-	#endif
-	#ifndef DX_NON_FILTER
-		#define DX_NON_FILTER
-	#endif
-	#ifndef DX_NON_2DDRAW
-		#define DX_NON_2DDRAW
-	#endif
-	#ifndef DX_NON_MASK
-		#define DX_NON_MASK
-	#endif
-	#ifndef DX_NON_MODEL
-		#define DX_NON_MODEL
-	#endif
-	#ifndef DX_NON_BULLET_PHYSICS
-		#define DX_NON_BULLET_PHYSICS
-	#endif
-	#ifndef DX_NON_PRINTF_DX
-		#define DX_NON_PRINTF_DX
-	#endif
-	#ifndef DX_NON_KEYEX
-		#define DX_NON_KEYEX
-	#endif
-	#ifndef DX_NON_DIRECT3D11
-		#define DX_NON_DIRECT3D11
-	#endif
-	#ifndef DX_NON_DIRECT3D9
-		#define DX_NON_DIRECT3D9
-	#endif
-	#ifndef DX_NOTUSE_DRAWFUNCTION
-		#define DX_NOTUSE_DRAWFUNCTION
-	#endif
-	#ifndef DX_NON_LIVE2D_CUBISM4
-		#define DX_NON_LIVE2D_CUBISM4
-	#endif
+#ifndef DX_NON_FONT
+#define DX_NON_FONT
+#endif
+#ifndef DX_NON_MOVIE
+#define DX_NON_MOVIE
+#endif
+#ifndef DX_NON_FILTER
+#define DX_NON_FILTER
+#endif
+#ifndef DX_NON_2DDRAW
+#define DX_NON_2DDRAW
+#endif
+#ifndef DX_NON_MASK
+#define DX_NON_MASK
+#endif
+#ifndef DX_NON_MODEL
+#define DX_NON_MODEL
+#endif
+#ifndef DX_NON_BULLET_PHYSICS
+#define DX_NON_BULLET_PHYSICS
+#endif
+#ifndef DX_NON_PRINTF_DX
+#define DX_NON_PRINTF_DX
+#endif
+#ifndef DX_NON_KEYEX
+#define DX_NON_KEYEX
+#endif
+#ifndef DX_NON_DIRECT3D11
+#define DX_NON_DIRECT3D11
+#endif
+#ifndef DX_NON_DIRECT3D9
+#define DX_NON_DIRECT3D9
+#endif
+#ifndef DX_NOTUSE_DRAWFUNCTION
+#define DX_NOTUSE_DRAWFUNCTION
+#endif
+#ifndef DX_NON_LIVE2D_CUBISM4
+#define DX_NON_LIVE2D_CUBISM4
+#endif
 #endif // DX_NON_GRAPHICS
 
 #ifdef DX_NON_SOUND
-	#ifndef DX_NON_OPUS
-		#define DX_NON_OPUS
-	#endif
-	#ifndef DX_NON_OGGVORBIS
-		#define DX_NON_OGGVORBIS
-	#endif
-	#ifndef DX_NON_OGGTHEORA
-		#define DX_NON_OGGTHEORA
-	#endif
-	#ifndef DX_NON_ACM
-		#define DX_NON_ACM
-	#endif
-	#ifndef DX_NON_DSHOW_MP3
-		#define DX_NON_DSHOW_MP3
-	#endif
-	#ifndef DX_NON_DSHOW_MOVIE
-		#define DX_NON_DSHOW_MOVIE
-	#endif
-	#ifndef DX_NON_MEDIA_FOUNDATION
-		#define DX_NON_MEDIA_FOUNDATION
-	#endif
-	#ifndef DX_NON_MOVIE
-		#define DX_NON_MOVIE
-	#endif
+#ifndef DX_NON_OPUS
+#define DX_NON_OPUS
+#endif
+#ifndef DX_NON_OGGVORBIS
+#define DX_NON_OGGVORBIS
+#endif
+#ifndef DX_NON_OGGTHEORA
+#define DX_NON_OGGTHEORA
+#endif
+#ifndef DX_NON_ACM
+#define DX_NON_ACM
+#endif
+#ifndef DX_NON_DSHOW_MP3
+#define DX_NON_DSHOW_MP3
+#endif
+#ifndef DX_NON_DSHOW_MOVIE
+#define DX_NON_DSHOW_MOVIE
+#endif
+#ifndef DX_NON_MEDIA_FOUNDATION
+#define DX_NON_MEDIA_FOUNDATION
+#endif
+#ifndef DX_NON_MOVIE
+#define DX_NON_MOVIE
+#endif
 #endif // DX_NON_SOUND
 
 #ifdef DX_NON_MULTITHREAD
-	#ifndef DX_NON_ASYNCLOAD
-		#define DX_NON_ASYNCLOAD
-	#endif
-	#ifdef DX_THREAD_SAFE
-		#undef DX_THREAD_SAFE
-	#endif
+#ifndef DX_NON_ASYNCLOAD
+#define DX_NON_ASYNCLOAD
+#endif
+#ifdef DX_THREAD_SAFE
+#undef DX_THREAD_SAFE
+#endif
 #endif
 
 #ifdef DX_NON_INPUTSTRING
-	#ifndef DX_NON_KEYEX
-		#define DX_NON_KEYEX
-	#endif
+#ifndef DX_NON_KEYEX
+#define DX_NON_KEYEX
+#endif
 #endif
 
 #ifdef DX_NON_DXA
-	#ifndef DX_NON_NORMAL_DRAW_SHADER
-		#define DX_NON_NORMAL_DRAW_SHADER
-	#endif
-	#ifndef DX_NON_MODEL
-		#define DX_NON_MODEL
-	#endif
-	#ifndef DX_NON_FILTER
-		#define DX_NON_FILTER
-	#endif
-	#ifndef DX_NON_MOVIE
-		#define DX_NON_MOVIE
-	#endif
+#ifndef DX_NON_NORMAL_DRAW_SHADER
+#define DX_NON_NORMAL_DRAW_SHADER
+#endif
+#ifndef DX_NON_MODEL
+#define DX_NON_MODEL
+#endif
+#ifndef DX_NON_FILTER
+#define DX_NON_FILTER
+#endif
+#ifndef DX_NON_MOVIE
+#define DX_NON_MOVIE
+#endif
 #endif
 
 #ifdef DX_NON_MOVIE
-	#ifndef DX_NON_OGGTHEORA
-		#define DX_NON_OGGTHEORA
-	#endif
-	#ifndef DX_NON_MEDIA_FOUNDATION
-		#define DX_NON_MEDIA_FOUNDATION
-	#endif // DX_NON_MEDIA_FOUNDATION
+#ifndef DX_NON_OGGTHEORA
+#define DX_NON_OGGTHEORA
+#endif
+#ifndef DX_NON_MEDIA_FOUNDATION
+#define DX_NON_MEDIA_FOUNDATION
+#endif // DX_NON_MEDIA_FOUNDATION
 #endif
 
 #ifdef DX_NON_INPUT
-	#ifndef DX_NON_KEYEX
-		#define DX_NON_KEYEX
-	#endif
+#ifndef DX_NON_KEYEX
+#define DX_NON_KEYEX
+#endif
 #endif
 
 #ifdef DX_NON_FONT
-	#ifndef DX_NON_PRINTF_DX
-		#define DX_NON_PRINTF_DX
-	#endif
-	#ifndef DX_NON_KEYEX
-		#define DX_NON_KEYEX
-	#endif
+#ifndef DX_NON_PRINTF_DX
+#define DX_NON_PRINTF_DX
+#endif
+#ifndef DX_NON_KEYEX
+#define DX_NON_KEYEX
+#endif
 #endif
 
 #ifdef DX_NON_OGGVORBIS
-	#ifndef DX_NON_OGGTHEORA
-		#define DX_NON_OGGTHEORA
-	#endif
-	#ifndef DX_NON_OPUS
-		#define DX_NON_OPUS
-	#endif
+#ifndef DX_NON_OGGTHEORA
+#define DX_NON_OGGTHEORA
+#endif
+#ifndef DX_NON_OPUS
+#define DX_NON_OPUS
+#endif
 #endif
 
 
 #if defined( _WIN64 ) || defined( __LP64__ )
-	#ifndef PLATFORM_64BIT
-		#define PLATFORM_64BIT
-	#endif
+#ifndef PLATFORM_64BIT
+#define PLATFORM_64BIT
+#endif
 #endif
 
 
 
 #if defined( _WIN64 ) || defined( __ANDROID__ ) || defined( __APPLE__ ) || defined( DX_GCC_COMPILE )
-	#ifndef DX_NON_INLINE_ASM
-		#define DX_NON_INLINE_ASM
-	#endif
+#ifndef DX_NON_INLINE_ASM
+#define DX_NON_INLINE_ASM
+#endif
 #endif
 
 

@@ -1,5 +1,10 @@
 #pragma once
 #include "IGameState.h"
+#include "Actor.h"
+#include "Prop.h"
+
+#include <memory>
+#include <vector>
 
 class GameManager;
 
@@ -14,11 +19,15 @@ public:
 	void Terminate()override;
 
 private:
-	int m_gameGraphHandle;
 	int m_gameFontHandle;
-	VECTOR initCamPos;
-	VECTOR initCamTarget;
-	float angle;
-	float radius;
-	float deltaValue;
+	VECTOR camPos;
+	VECTOR focusPos;
+
+	//models
+	int box01Handle;
+	VECTOR box01Pos;
+
+	//actors
+	std::shared_ptr<Prop> box01;
+	std::vector<std::shared_ptr<Actor>> actors;
 };

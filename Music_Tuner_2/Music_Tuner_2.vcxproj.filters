@@ -31,6 +31,12 @@
     <Filter Include="5_ResultState">
       <UniqueIdentifier>{e1282962-d36e-413c-9b5d-d29baaf3ae37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="6_Actor">
+      <UniqueIdentifier>{ae1d0578-8996-467c-986f-4807932ba2a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_Actor\Prop">
+      <UniqueIdentifier>{4e02ab63-2302-4fb1-9e87-afe87d32bc60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -66,6 +72,12 @@
     <ClInclude Include="InGameState.h">
       <Filter>4_InGameState</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>6_Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Prop.h">
+      <Filter>6_Actor\Prop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Music_Tuner_2.cpp">
@@ -85,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="InGameState.cpp">
       <Filter>4_InGameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>6_Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Prop.cpp">
+      <Filter>6_Actor\Prop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
