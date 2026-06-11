@@ -2,6 +2,7 @@
 #include "IGameState.h"
 #include "Actor.h"
 #include "Prop.h"
+#include "Character.h"
 
 #include <memory>
 #include <vector>
@@ -21,13 +22,14 @@ public:
 private:
 	int m_gameFontHandle;
 	VECTOR camPos;
-	VECTOR focusPos;
+	VECTOR camRelatedPos;
 
 	//models
 	int box01Handle;
 	VECTOR box01Pos;
 
 	//actors
-	std::shared_ptr<Prop> box01;
 	std::vector<std::shared_ptr<Actor>> actors;
+	std::shared_ptr<Prop> box01;
+	std::shared_ptr<Character> player01;
 };

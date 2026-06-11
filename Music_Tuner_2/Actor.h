@@ -1,5 +1,6 @@
 #pragma once
 #include "DxLib.h"
+#include "InputState.h"
 
 class Actor
 {
@@ -8,7 +9,7 @@ public:
 	Actor();
 	virtual ~Actor();
 
-	virtual void Update(float deltaTime);
+	virtual void Update(const InputState* input, float deltaTime);
 	virtual void Draw();
 
 	void SetPosition(const VECTOR& pos);
@@ -21,10 +22,14 @@ public:
 	VECTOR GetScale() const;
 
 	VECTOR GetForward() const;
+	VECTOR GetRight() const;
+	VECTOR GetUp() const;
 
 	void SetModelHandle(int handle);
 
 protected:
+
+	void UpdateWorldMatrix();
 
 	// Transform
 	VECTOR Position;

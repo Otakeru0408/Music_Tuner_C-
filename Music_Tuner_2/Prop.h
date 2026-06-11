@@ -7,7 +7,7 @@ public:
 
 	virtual ~Prop();
 
-	virtual void Update(float deltaTime) override;
+	virtual void Update(const InputState* input, float deltaTime) override;
 	virtual void Draw() override;
 protected:
 

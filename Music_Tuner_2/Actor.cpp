@@ -16,7 +16,7 @@ Actor::~Actor()
 {
 }
 
-void Actor::Update(float deltaTime)
+void Actor::Update(const InputState* input, float deltaTime)
 {
 }
 
@@ -32,6 +32,7 @@ void Actor::SetPosition(const VECTOR& pos)
 {
 	Position = pos;
 	MV1SetPosition(ModelHandle, Position);
+	UpdateWorldMatrix();
 }
 
 VECTOR Actor::GetPosition() const
@@ -43,6 +44,7 @@ void Actor::SetRotation(const VECTOR& rot)
 {
 	Rotation = rot;
 	MV1SetRotationXYZ(ModelHandle, Rotation);
+	UpdateWorldMatrix();
 }
 
 VECTOR Actor::GetRotation() const
@@ -54,6 +56,7 @@ void Actor::SetScale(const VECTOR& scale)
 {
 	Scale = scale;
 	MV1SetScale(ModelHandle, Scale);
+	UpdateWorldMatrix();
 }
 
 VECTOR Actor::GetScale() const
@@ -61,16 +64,52 @@ VECTOR Actor::GetScale() const
 	return Scale;
 }
 
+void Actor::UpdateWorldMatrix()
+{
+	MATRIX scaleMat = MGetScale(Scale);
+
+	//åªç›ÇÕä»ó™âªÇÃÇΩÇﬂYé≤âÒì]ÇµÇ©ÇµÇ»Ç¢ÇÊÇ§Ç…ÇµÇƒÇ¢ÇÈÅB
+	MATRIX rotMat = MGetRotY(Rotation.y);
+
+	MATRIX transMat = MGetTranslate(Position);
+
+	WorldMatrix =
+		MMult(
+			MMult(scaleMat, rotMat),
+			transMat);
+}
+
 VECTOR Actor::GetForward() const
 {
 	VECTOR forward;
 
-	// Rotation.y ÇYé≤âÒì](ÉâÉWÉAÉì)Ç∆âºíË
-	forward.x = sinf(Rotation.y);
-	forward.y = 0.0f;
-	forward.z = cosf(Rotation.y);
+	forward.x = WorldMatrix.m[2][0];
+	forward.y = WorldMatrix.m[2][1];
+	forward.z = WorldMatrix.m[2][2];
 
 	return VNorm(forward);
+}
+
+VECTOR Actor::GetRight() const
+{
+	VECTOR right;
+
+	right.x = WorldMatrix.m[0][0];
+	right.y = WorldMatrix.m[0][1];
+	right.z = WorldMatrix.m[0][2];
+
+	return VNorm(right);
+}
+
+VECTOR Actor::GetUp() const
+{
+	VECTOR up;
+
+	up.x = WorldMatrix.m[1][0];
+	up.y = WorldMatrix.m[1][1];
+	up.z = WorldMatrix.m[1][2];
+
+	return VNorm(up);
 }
 
 void Actor::SetModelHandle(int handle) {

@@ -11,16 +11,31 @@ void InGameState::Init() {
 	AddFontResourceEx("Data/YDWaosagi.otf", FR_PRIVATE, 0);
 	m_gameFontHandle = CreateFontToHandle("YDW ‚ ‚¨‚³‚¬ R", 25, 3);
 
-	camPos = VGet(0.0f, 0.0f, -1000.0f);
-	focusPos = VGet(0.0f, 0.0f, 0.0f);
-	SetCameraPositionAndTarget_UpVecY(camPos, focusPos);
-
 	//load Models
 	box01 = std::make_shared<Prop>();
 	box01->SetModelHandle(MV1LoadModel("Data/SampleBox01.mv1"));
 	box01->SetPosition(VGet(0.0f, 0.0f, 0.0f));
+	//actors.emplace_back(box01);
 
-	actors.emplace_back(box01);
+	std::shared_ptr<Prop> plane01 = std::make_shared<Prop>();
+	plane01->SetModelHandle(MV1LoadModel("Data/SamplePlane01.mv1"));
+	plane01->SetPosition(VGet(0.0f, -100.0f, 0.0f));
+	plane01->SetScale(VGet(10.0f, 1.0f, 10.0f));
+	actors.emplace_back(plane01);
+
+	player01 = std::make_shared<Character>();
+	player01->SetModelHandle(MV1LoadModel("Data/SampleBox01.mv1"));
+	player01->SetScale(VGet(0.5f, 0.5f, 0.5f));
+	actors.emplace_back(player01);
+
+	camRelatedPos = VGet(0.0f, 100.0f, -300.0f);
+	camPos = VAdd(player01->GetPosition(), camRelatedPos);
+	SetCameraPositionAndTarget_UpVecY(camPos, player01->GetPosition());
+
+	//light settings
+	SetUseLighting(TRUE);
+	SetLightDirection(VGet(0.0f, 1.0f, 0.0f));
+
 }
 
 SceneTransition* InGameState::Update(const InputState* input, float deltaTime) {
@@ -33,9 +48,12 @@ SceneTransition* InGameState::Update(const InputState* input, float deltaTime) {
 
 	//Update all actors
 	for (auto actor : actors) {
-		actor->Update(deltaTime);
+		actor->Update(input, deltaTime);
 	}
 
+	//Update camera
+	camPos = VAdd(player01->GetPosition(), camRelatedPos);
+	SetCameraPositionAndTarget_UpVecY(camPos, player01->GetPosition());
 
 	SceneTransition* trans = new SceneTransition{ TransitionType::None, nullptr };
 	return trans;
