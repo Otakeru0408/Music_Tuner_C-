@@ -3,6 +3,7 @@
 #include "Actor.h"
 #include "Prop.h"
 #include "Character.h"
+#include "Camera.h"
 
 #include <memory>
 #include <vector>
@@ -23,6 +24,7 @@ private:
 	int m_gameFontHandle;
 	VECTOR camPos;
 	VECTOR camRelatedPos;
+	VECTOR camAdditionalPos;
 
 	//models
 	int box01Handle;
@@ -32,4 +34,5 @@ private:
 	std::vector<std::shared_ptr<Actor>> actors;
 	std::shared_ptr<Prop> box01;
 	std::shared_ptr<Character> player01;
+	std::shared_ptr<Camera> mainCam;
 };

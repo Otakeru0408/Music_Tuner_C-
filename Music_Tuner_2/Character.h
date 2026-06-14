@@ -37,4 +37,5 @@ protected:
 	float MoveSpeed;
 
 	int HP;
+
 };

@@ -7,6 +7,8 @@
 GameManager::GameManager() :m_isGameFinished(false) {
 	memset(m_inputState.key, 0, sizeof(m_inputState.key));
 	memset(m_inputState.prevKey, 0, sizeof(m_inputState.prevKey));
+	memset(m_inputState.mouse_input, 0, sizeof(m_inputState.mouse_input));
+	memset(m_inputState.prev_mouse_input, 0, sizeof(m_inputState.prev_mouse_input));
 }
 
 GameManager::~GameManager() {
@@ -98,4 +100,16 @@ void GameManager::UpdateInputState()
 	}
 
 	// TODO: マウスやゲームパッドの入力もここに追加
+	//マウスの入力を前の入力として保存
+	memcpy(m_inputState.prev_mouse_input, m_inputState.mouse_input, sizeof(m_inputState.mouse_input));
+
+	int mouse_input = GetMouseInput();
+	if (mouse_input & MOUSE_INPUT_LEFT)m_inputState.mouse_input[0]++;
+	else m_inputState.mouse_input[0] = 0;
+
+	if (mouse_input & MOUSE_INPUT_RIGHT)m_inputState.mouse_input[1]++;
+	else m_inputState.mouse_input[1] = 0;
+
+	if (mouse_input & MOUSE_INPUT_MIDDLE)m_inputState.mouse_input[2]++;
+	else m_inputState.mouse_input[2] = 0;
 }

@@ -2,6 +2,8 @@
 #include "DxLib.h"
 #include "InputState.h"
 
+#include <memory>
+
 class Actor
 {
 public:

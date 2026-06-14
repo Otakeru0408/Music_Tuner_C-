@@ -28,9 +28,8 @@ void InGameState::Init() {
 	player01->SetScale(VGet(0.5f, 0.5f, 0.5f));
 	actors.emplace_back(player01);
 
-	camRelatedPos = VGet(0.0f, 100.0f, -300.0f);
-	camPos = VAdd(player01->GetPosition(), camRelatedPos);
-	SetCameraPositionAndTarget_UpVecY(camPos, player01->GetPosition());
+	mainCam = std::make_shared<Camera>(player01);
+	actors.emplace_back(mainCam);
 
 	//light settings
 	SetUseLighting(TRUE);
@@ -50,10 +49,6 @@ SceneTransition* InGameState::Update(const InputState* input, float deltaTime) {
 	for (auto actor : actors) {
 		actor->Update(input, deltaTime);
 	}
-
-	//Update camera
-	camPos = VAdd(player01->GetPosition(), camRelatedPos);
-	SetCameraPositionAndTarget_UpVecY(camPos, player01->GetPosition());
 
 	SceneTransition* trans = new SceneTransition{ TransitionType::None, nullptr };
 	return trans;

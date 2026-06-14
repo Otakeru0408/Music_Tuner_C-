@@ -1,12 +1,14 @@
 #include "Character.h"
 
 Character::Character()
+	:Actor()
 {
 	Velocity = VGet(0.0f, 0.0f, 0.0f);
 
 	MoveSpeed = 100.0f;
 
 	HP = 100;
+
 }
 
 Character::~Character()
@@ -46,8 +48,6 @@ void Character::Update(const InputState* input, float deltaTime)
 	}
 
 	SetRotation(Rotation);*/
-	auto [mx, my] = input->GetMousePos();
-	//ここでマウスの左右移動から視点を回転させたい。
 
 	Actor::Update(input, deltaTime);
 }
