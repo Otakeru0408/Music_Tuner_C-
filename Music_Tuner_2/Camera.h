@@ -6,7 +6,7 @@
 
 class Camera : public Actor {
 public:
-	Camera(std::shared_ptr<Character> player);
+	Camera(InGameState* _parent, std::shared_ptr<Character> player);
 	virtual ~Camera();
 
 	virtual void Update(const InputState* input, float deltaTime) override;

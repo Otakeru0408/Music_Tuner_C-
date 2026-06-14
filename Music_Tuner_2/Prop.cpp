@@ -1,6 +1,7 @@
 #include "Prop.h"
 
-Prop::Prop()
+Prop::Prop(InGameState* _parent)
+	:Actor(_parent)
 {
 }
 

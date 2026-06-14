@@ -1,7 +1,8 @@
 #include "Character.h"
+#include "InGameState.h"
 
-Character::Character()
-	:Actor()
+Character::Character(InGameState* _parent)
+	:Actor(_parent)
 {
 	Velocity = VGet(0.0f, 0.0f, 0.0f);
 
@@ -34,7 +35,7 @@ void Character::Update(const InputState* input, float deltaTime)
 		Velocity = VAdd(Velocity, VGet(0.0f, 0.0f, MoveSpeed * deltaTime));
 	}
 
-	VECTOR newDiff = VAdd(VScale(GetForward(), Velocity.z), VScale(GetRight(), Velocity.x));
+	VECTOR newDiff = VAdd(VScale(GetForwardFromCamera(), Velocity.z), VScale(GetRightFromCamera(), Velocity.x));
 
 	Position = VAdd(Position, newDiff);
 	SetPosition(Position);
@@ -54,7 +55,7 @@ void Character::Update(const InputState* input, float deltaTime)
 
 void Character::Draw() {
 	Actor::Draw();
-	DrawFormatString(10, 300, GetColor(0, 0, 0), "Vel : %.2f, %.2f, %.2f", Velocity.x, Velocity.y, Velocity.z);
+	DrawFormatString(10, 300, GetColor(0, 0, 0), "Vel : %.2f, %.2f, %.2f", Position.x, Position.y, Position.z);
 }
 
 void Character::Move(float deltaTime)
@@ -103,4 +104,18 @@ void Character::Damage(int damage)
 		HP = 0;
 		IsActive = false;
 	}
+}
+
+VECTOR Character::GetForwardFromCamera() {
+	VECTOR forward = VSub(GetPosition(), parent->GetCameraPos());
+	forward = VNorm(forward);
+	forward.y = 0;
+	return forward;
+}
+
+VECTOR Character::GetRightFromCamera() {
+	VECTOR forward = GetForwardFromCamera();
+	VECTOR upVec = GetUp();
+
+	return VNorm(VCross(upVec, forward));
 }

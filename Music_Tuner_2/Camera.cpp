@@ -1,7 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(std::shared_ptr<Character> player)
-	:Actor(), player(player)
+Camera::Camera(InGameState* _parent, std::shared_ptr<Character> player)
+	:Actor(_parent), player(player)
 {
 	camRelatedPos = VGet(0.0f, 100.0f, -300.0f);
 	camPos = VAdd(player->GetPosition(), camRelatedPos);
@@ -42,6 +42,7 @@ void Camera::Update(const InputState* input, float deltaTime)
 
 	//Update camera
 	camPos = VAdd(player->GetPosition(), camRelatedPos);
+	SetPosition(camPos);
 	SetCameraPositionAndTarget_UpVecY(camPos, player->GetPosition());
 	Actor::Update(input, deltaTime);
 }

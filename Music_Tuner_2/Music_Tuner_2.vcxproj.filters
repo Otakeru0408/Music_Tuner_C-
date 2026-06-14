@@ -37,6 +37,12 @@
     <Filter Include="6_Actor\Prop">
       <UniqueIdentifier>{4e02ab63-2302-4fb1-9e87-afe87d32bc60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="6_Actor\Camera">
+      <UniqueIdentifier>{931d0fd0-7f65-43e6-a34a-9d612d17a56f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_Actor\Character">
+      <UniqueIdentifier>{aa8a71e2-12b7-467d-b15f-8adfb475ec6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -78,11 +84,11 @@
     <ClInclude Include="Prop.h">
       <Filter>6_Actor\Prop</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
+      <Filter>6_Actor\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>6_Actor\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,11 +116,11 @@
     <ClCompile Include="Prop.cpp">
       <Filter>6_Actor\Prop</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>6_Actor\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>6_Actor\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

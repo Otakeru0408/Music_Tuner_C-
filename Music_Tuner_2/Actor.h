@@ -4,11 +4,13 @@
 
 #include <memory>
 
+class InGameState;
+
 class Actor
 {
 public:
 
-	Actor();
+	Actor(InGameState* _parent);
 	virtual ~Actor();
 
 	virtual void Update(const InputState* input, float deltaTime);
@@ -47,4 +49,5 @@ protected:
 	// èÛë‘
 	bool IsActive;
 	bool IsVisible;
+	InGameState* parent;
 };

@@ -3,7 +3,7 @@
 
 class Prop : public Actor {
 public:
-	Prop();
+	Prop(InGameState* _parent);
 
 	virtual ~Prop();
 

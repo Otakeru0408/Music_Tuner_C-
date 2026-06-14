@@ -20,6 +20,13 @@ public:
 	void Draw()override;
 	void Terminate()override;
 
+	VECTOR GetCameraPos() {
+		if (!mainCam) {
+			return VGet(0, 0, 0);
+		}
+		return mainCam->GetPosition();
+	}
+
 private:
 	int m_gameFontHandle;
 	VECTOR camPos;

@@ -9,7 +9,7 @@ class Character : public Actor
 {
 public:
 
-	Character();
+	Character(InGameState* _parent);
 	virtual ~Character();
 
 	virtual void Update(const InputState* input, float deltaTime) override;
@@ -25,6 +25,9 @@ public:
 	int GetHP() const;
 
 	void Damage(int damage);
+
+	VECTOR GetForwardFromCamera();
+	VECTOR GetRightFromCamera();
 
 protected:
 

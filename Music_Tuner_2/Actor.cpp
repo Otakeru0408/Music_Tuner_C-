@@ -2,8 +2,8 @@
 
 #include <math.h>
 
-Actor::Actor()
-	:IsActive(true), IsVisible(true), WorldMatrix(MGetIdent())
+Actor::Actor(InGameState* _parent)
+	:parent(_parent), IsActive(true), IsVisible(true), WorldMatrix(MGetIdent())
 {
 	Position = VGet(0, 0, 0);
 	Rotation = VGet(0, 0, 0);
