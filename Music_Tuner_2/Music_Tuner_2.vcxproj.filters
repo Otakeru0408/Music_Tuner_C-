@@ -90,6 +90,9 @@
     <ClInclude Include="Character.h">
       <Filter>6_Actor\Character</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderParam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Music_Tuner_2.cpp">

@@ -19,12 +19,30 @@ void GameManager::Initialize() {
 	if (DxLib_Init() == -1) {
 		return;
 	}
+
+	SetDrawScreen(DX_SCREEN_BACK);
+	/*
 	//魚眼のためのスクリーン作成
 	SceneScreen = MakeScreen(GameData::windowWidth, GameData::windowHeight, TRUE);
-	SetDrawScreen(DX_SCREEN_BACK);
+	SetDrawScreen(SceneScreen);
 
 	//魚眼のためのshaderをロード
-	FishEyePS = LoadPixelShader("Data/FishEye.pso");
+	FishEyePS = LoadPixelShader("Data/pixelshader_1.pso");
+	FishEyeCB = CreateShaderConstantBuffer(sizeof(FishEyeParam));
+
+	param.Strength = 100.0f;
+	param.Padding[0] = 0.0f;
+	param.Padding[1] = 0.0f;
+	param.Padding[2] = 0.0f;
+
+	FishEyeParam* buffer = (FishEyeParam*)GetBufferShaderConstantBuffer(FishEyeCB);
+	*buffer = param;
+	UpdateShaderConstantBuffer(FishEyeCB);
+	SetShaderConstantBuffer(
+		FishEyeCB,
+		DX_SHADERTYPE_PIXEL,
+		0);
+	*/
 
 	SetWaitVSyncFlag(TRUE);
 
@@ -39,10 +57,6 @@ void GameManager::Update() {
 	if (ProcessMessage() != 0) {
 		return;
 	}
-
-	//シェーダー用画面に描画先を切り替える
-	SetDrawScreen(SceneScreen);
-	ClearDrawScreen();
 
 	UpdateInputState();
 
@@ -70,6 +84,9 @@ void GameManager::Update() {
 
 void GameManager::Draw() {
 	//魚眼のため、描画先を変更
+	//シェーダー用画面に描画先を切り替える
+	//SetDrawScreen(SceneScreen);
+	ClearDrawScreen();
 
 	if (!m_currentState.empty())m_currentState.top()->Draw();
 	else {
@@ -77,7 +94,7 @@ void GameManager::Draw() {
 	}
 
 	//描画が終わったら描画先を変更
-	SetDrawScreen(DX_SCREEN_BACK);
+	/*SetDrawScreen(DX_SCREEN_BACK);
 	ClearDrawScreen();
 
 	//SceneScreenに描画した内容を魚眼に変更していくための設定
@@ -89,7 +106,7 @@ void GameManager::Draw() {
 
 	//描画が終わったらシェーダー解除
 	SetUsePixelShader(-1);
-
+	*/
 
 	//この後にUIなど魚眼にしたくないものを描画する
 	DrawFormatString(0, 50, GetColor(0, 0, 0), "Shader is %d", FishEyePS);

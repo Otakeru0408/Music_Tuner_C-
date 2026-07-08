@@ -3,6 +3,7 @@
 #include <stack>
 #include "IGameState.h"
 #include "InputState.h"
+#include "ShaderParam.h"
 
 class TitleState;
 class InGameState;
@@ -36,6 +37,8 @@ private:
 	LONGLONG m_prevTime = 0;
 	int SceneScreen = 0;
 	int FishEyePS = 0;
+	FishEyeParam param;
+	int FishEyeCB = -1;
 
 	void UpdateInputState();
 
