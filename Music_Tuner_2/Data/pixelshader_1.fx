@@ -33,8 +33,6 @@ struct PS_INPUT
 float4 PS_Main(PS_INPUT input) : SV_TARGET
 {
     
-    return float4(1, 0, 0, 1);
-    
     // Œ³‚ÌUV
     float2 uv = input.UV;
 

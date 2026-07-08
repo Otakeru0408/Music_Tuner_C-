@@ -39,6 +39,7 @@ private:
 	int FishEyePS = 0;
 	FishEyeParam param;
 	int FishEyeCB = -1;
+	VERTEX2DSHADER Vert[6];
 
 	void UpdateInputState();
 
