@@ -115,3 +115,12 @@ VECTOR Actor::GetUp() const
 void Actor::SetModelHandle(int handle) {
 	ModelHandle = handle;
 }
+
+int Actor::GetModelHandle() {
+	if (ModelHandle >= 0)
+	{
+		return ModelHandle;
+	}
+
+	return -1;
+}

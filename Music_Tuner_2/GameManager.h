@@ -34,6 +34,8 @@ private:
 	bool m_isGameFinished; // ★追加: ゲーム終了フラグ
 	InputState m_inputState;
 	LONGLONG m_prevTime = 0;
+	int SceneScreen = 0;
+	int FishEyePS = 0;
 
 	void UpdateInputState();
 

@@ -30,6 +30,7 @@ public:
 	VECTOR GetUp() const;
 
 	void SetModelHandle(int handle);
+	int GetModelHandle();
 
 protected:
 

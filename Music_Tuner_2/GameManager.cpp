@@ -19,7 +19,12 @@ void GameManager::Initialize() {
 	if (DxLib_Init() == -1) {
 		return;
 	}
+	//魚眼のためのスクリーン作成
+	SceneScreen = MakeScreen(GameData::windowWidth, GameData::windowHeight, TRUE);
 	SetDrawScreen(DX_SCREEN_BACK);
+
+	//魚眼のためのshaderをロード
+	FishEyePS = LoadPixelShader("Data/FishEye.pso");
 
 	SetWaitVSyncFlag(TRUE);
 
@@ -34,6 +39,10 @@ void GameManager::Update() {
 	if (ProcessMessage() != 0) {
 		return;
 	}
+
+	//シェーダー用画面に描画先を切り替える
+	SetDrawScreen(SceneScreen);
+	ClearDrawScreen();
 
 	UpdateInputState();
 
@@ -60,12 +69,31 @@ void GameManager::Update() {
 }
 
 void GameManager::Draw() {
-	ClearDrawScreen();
+	//魚眼のため、描画先を変更
 
 	if (!m_currentState.empty())m_currentState.top()->Draw();
 	else {
 		DrawString(100, 100, "current Scene not exist", GetColor(0, 0, 0));
 	}
+
+	//描画が終わったら描画先を変更
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClearDrawScreen();
+
+	//SceneScreenに描画した内容を魚眼に変更していくための設定
+	SetUsePixelShader(FishEyePS);
+	SetUseTextureToShader(0, SceneScreen);
+
+	//実際に描画していく
+	DrawGraph(0, 0, SceneScreen, FALSE);
+
+	//描画が終わったらシェーダー解除
+	SetUsePixelShader(-1);
+
+
+	//この後にUIなど魚眼にしたくないものを描画する
+	DrawFormatString(0, 50, GetColor(0, 0, 0), "Shader is %d", FishEyePS);
+
 
 	int x, y;
 	GetMousePoint(&x, &y);
