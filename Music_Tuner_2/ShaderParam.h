@@ -4,5 +4,6 @@
 struct FishEyeParam
 {
 	float Strength;
-	float Padding[3];
+	float Zoom;
+	float Padding[2];
 };

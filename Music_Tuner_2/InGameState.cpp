@@ -49,13 +49,14 @@ void InGameState::Init() {
 	FishEyePS = LoadPixelShader("Data/pixelshader_1.pso");
 	FishEyeCB = CreateShaderConstantBuffer(sizeof(FishEyeParam));
 
-	param.Strength = 1.0f;
+	param.Strength = 2.0f;
+	param.Zoom = 0.7f;
 	param.Padding[0] = 0.0f;
 	param.Padding[1] = 0.0f;
-	param.Padding[2] = 0.0f;
 
 	FishEyeParam* buffer = (FishEyeParam*)GetBufferShaderConstantBuffer(FishEyeCB);
 	*buffer = param;
+
 	UpdateShaderConstantBuffer(FishEyeCB);
 	SetShaderConstantBuffer(
 		FishEyeCB,
@@ -128,6 +129,7 @@ SceneTransition* InGameState::Update(const InputState* input, float deltaTime) {
 	SetDrawScreen(SceneScreen);
 	ClearDrawScreen();
 
+
 	//Spaceを押したときはゲームシーンへ移行する
 	if (input->IsKeyDown(KEY_INPUT_SPACE)) {
 		SceneTransition* trans = new SceneTransition{ TransitionType::Change,
@@ -145,6 +147,9 @@ SceneTransition* InGameState::Update(const InputState* input, float deltaTime) {
 }
 
 void InGameState::Draw() {
+
+	SetupCamera_Perspective(DX_PI_F / 2);
+
 	for (auto actor : actors) {
 		actor->Draw();
 	}
@@ -158,6 +163,13 @@ void InGameState::Draw() {
 	SetUsePixelShader(FishEyePS);
 	SetUseTextureToShader(0, SceneScreen);
 
+	//シェーダーへ渡す値の更新
+	UpdateShaderConstantBuffer(FishEyeCB);
+	SetShaderConstantBuffer(
+		FishEyeCB,
+		DX_SHADERTYPE_PIXEL,
+		0);
+
 	//実際に描画していく
 	DrawPolygon2DToShader(Vert, 2);
 	//DrawGraph(0, 0, SceneScreen, FALSE);
@@ -166,8 +178,6 @@ void InGameState::Draw() {
 	SetUsePixelShader(-1);
 
 	//この後にUIなど魚眼にしたくないものを描画する
-	DrawFormatString(0, 50, GetColor(0, 0, 0), "Shader is %d", FishEyePS);
-	DrawFormatString(GameData::windowWidth / 2, 50, GetColor(0, 0, 0), "scene is %d", SceneScreen);
 
 	//DrawSphere3D(VGet(1000.0f, 100.0f, 0.0f), 100.0f, 8, GetColor(255, 255, 255), GetColor(255, 255, 255), TRUE);
 	/*VECTOR playerPos = player01->GetPosition();

@@ -22,6 +22,7 @@ void GameManager::Initialize() {
 
 	SetWaitVSyncFlag(TRUE);
 
+
 	//ChangeState(std::make_unique<TitleState>(this));
 	PushState(std::make_unique<TitleState>(this));
 	currentState()->Init();
