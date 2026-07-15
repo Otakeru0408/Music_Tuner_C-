@@ -4,6 +4,7 @@
 #include "Prop.h"
 #include "Character.h"
 #include "Camera.h"
+#include "ShaderParam.h"
 
 #include <memory>
 #include <vector>
@@ -32,6 +33,13 @@ private:
 	VECTOR camPos;
 	VECTOR camRelatedPos;
 	VECTOR camAdditionalPos;
+
+	//fisheye perspective
+	int SceneScreen = 0;
+	int FishEyePS = 0;
+	FishEyeParam param;
+	int FishEyeCB = -1;
+	VERTEX2DSHADER Vert[6];
 
 	//models
 	int box01Handle;

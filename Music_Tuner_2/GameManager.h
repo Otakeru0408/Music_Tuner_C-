@@ -3,7 +3,6 @@
 #include <stack>
 #include "IGameState.h"
 #include "InputState.h"
-#include "ShaderParam.h"
 
 class TitleState;
 class InGameState;
@@ -35,11 +34,7 @@ private:
 	bool m_isGameFinished; // ★追加: ゲーム終了フラグ
 	InputState m_inputState;
 	LONGLONG m_prevTime = 0;
-	int SceneScreen = 0;
-	int FishEyePS = 0;
-	FishEyeParam param;
-	int FishEyeCB = -1;
-	VERTEX2DSHADER Vert[6];
+
 
 	void UpdateInputState();
 

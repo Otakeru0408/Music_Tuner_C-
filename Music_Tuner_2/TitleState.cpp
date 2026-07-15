@@ -9,6 +9,9 @@ void TitleState::Init() {
 	//ご使用のパソコンに一時的にFontを読み込ませる
 	AddFontResourceEx("Data/YDWaosagi.otf", FR_PRIVATE, 0);
 	m_titleFontHandle = CreateFontToHandle("YDW あおさぎ R", 30, 3);
+
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClearDrawScreen();
 }
 
 SceneTransition* TitleState::Update(const InputState* input, float deltaTime) {

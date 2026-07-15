@@ -41,9 +41,93 @@ void InGameState::Init() {
 	SetUseLighting(TRUE);
 	SetLightDirection(VGet(0.0f, 1.0f, 0.0f));
 
+	//fisheye
+	//魚眼のためのスクリーン作成
+	SceneScreen = MakeScreen(GameData::windowWidth, GameData::windowHeight, TRUE);
+
+	//魚眼のためのshaderをロード
+	FishEyePS = LoadPixelShader("Data/pixelshader_1.pso");
+	FishEyeCB = CreateShaderConstantBuffer(sizeof(FishEyeParam));
+
+	param.Strength = 1.0f;
+	param.Padding[0] = 0.0f;
+	param.Padding[1] = 0.0f;
+	param.Padding[2] = 0.0f;
+
+	FishEyeParam* buffer = (FishEyeParam*)GetBufferShaderConstantBuffer(FishEyeCB);
+	*buffer = param;
+	UpdateShaderConstantBuffer(FishEyeCB);
+	SetShaderConstantBuffer(
+		FishEyeCB,
+		DX_SHADERTYPE_PIXEL,
+		0);
+
+	//ポリゴンの頂点の設定
+	{
+		Vert[0].pos = VGet(0.0f, 0.0f, 0.0f);
+		Vert[0].rhw = 1.0f;
+		Vert[0].dif = GetColorU8(255, 255, 255, 255);
+		Vert[0].spc = GetColorU8(0, 0, 0, 0);
+		Vert[0].u = 0.0f;
+		Vert[0].v = 0.0f;
+		Vert[0].su = 0.0f;
+		Vert[0].sv = 0.0f;
+
+		Vert[1].pos = VGet(GameData::windowWidth, 0.0f, 0.0f);
+		Vert[1].rhw = 1.0f;
+		Vert[1].dif = GetColorU8(255, 255, 255, 255);
+		Vert[1].spc = GetColorU8(0, 0, 0, 0);
+		Vert[1].u = 1.0f;
+		Vert[1].v = 0.0f;
+		Vert[1].su = 1.0f;
+		Vert[1].sv = 0.0f;
+
+		Vert[2].pos = VGet(0.0f, GameData::windowHeight, 0.0f);
+		Vert[2].rhw = 1.0f;
+		Vert[2].dif = GetColorU8(255, 255, 255, 255);
+		Vert[2].spc = GetColorU8(0, 0, 0, 0);
+		Vert[2].u = 0.0f;
+		Vert[2].v = 1.0f;
+		Vert[2].su = 0.0f;
+		Vert[2].sv = 1.0f;
+
+		Vert[3].pos = VGet(GameData::windowWidth, GameData::windowHeight, 0.0f);
+		Vert[3].rhw = 1.0f;
+		Vert[3].dif = GetColorU8(255, 255, 255, 255);
+		Vert[3].spc = GetColorU8(0, 0, 0, 0);
+		Vert[3].u = 1.0f;
+		Vert[3].v = 1.0f;
+		Vert[3].su = 1.0f;
+		Vert[3].sv = 1.0f;
+
+		Vert[4].pos = VGet(0.0f, GameData::windowHeight, 0.0f);
+		Vert[4].rhw = 1.0f;
+		Vert[4].dif = GetColorU8(255, 255, 255, 255);
+		Vert[4].spc = GetColorU8(0, 0, 0, 0);
+		Vert[4].u = 0.0f;
+		Vert[4].v = 1.0f;
+		Vert[4].su = 0.0f;
+		Vert[4].sv = 1.0f;
+
+		Vert[5].pos = VGet(GameData::windowWidth, 0.0f, 0.0f);
+		Vert[5].rhw = 1.0f;
+		Vert[5].dif = GetColorU8(255, 255, 255, 255);
+		Vert[5].spc = GetColorU8(0, 0, 0, 0);
+		Vert[5].u = 1.0f;
+		Vert[5].v = 0.0f;
+		Vert[5].su = 1.0f;
+		Vert[5].sv = 0.0f;
+	}
+
 }
 
 SceneTransition* InGameState::Update(const InputState* input, float deltaTime) {
+
+	//魚眼のため、描画先を変更
+	//シェーダー用画面に描画先を切り替える
+	SetDrawScreen(SceneScreen);
+	ClearDrawScreen();
+
 	//Spaceを押したときはゲームシーンへ移行する
 	if (input->IsKeyDown(KEY_INPUT_SPACE)) {
 		SceneTransition* trans = new SceneTransition{ TransitionType::Change,
@@ -64,6 +148,26 @@ void InGameState::Draw() {
 	for (auto actor : actors) {
 		actor->Draw();
 	}
+
+
+	//描画が終わったら描画先を変更
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClearDrawScreen();
+
+	//SceneScreenに描画した内容を魚眼に変更していくための設定
+	SetUsePixelShader(FishEyePS);
+	SetUseTextureToShader(0, SceneScreen);
+
+	//実際に描画していく
+	DrawPolygon2DToShader(Vert, 2);
+	//DrawGraph(0, 0, SceneScreen, FALSE);
+
+	//描画が終わったらシェーダー解除
+	SetUsePixelShader(-1);
+
+	//この後にUIなど魚眼にしたくないものを描画する
+	DrawFormatString(0, 50, GetColor(0, 0, 0), "Shader is %d", FishEyePS);
+	DrawFormatString(GameData::windowWidth / 2, 50, GetColor(0, 0, 0), "scene is %d", SceneScreen);
 
 	//DrawSphere3D(VGet(1000.0f, 100.0f, 0.0f), 100.0f, 8, GetColor(255, 255, 255), GetColor(255, 255, 255), TRUE);
 	/*VECTOR playerPos = player01->GetPosition();
