@@ -65,8 +65,8 @@ void Camera::Update(const InputState* input, float deltaTime)
 void Camera::Draw() {
 	Actor::Draw();
 
-	DrawFormatString(100, 200, GetColor(0, 0, 0), "X:%.2f,Y:%.2f,Z:%.2f", mouseStartPos.x, mouseStartPos.y, mouseStartPos.z);
+	/*DrawFormatString(100, 200, GetColor(0, 0, 0), "X:%.2f,Y:%.2f,Z:%.2f", mouseStartPos.x, mouseStartPos.y, mouseStartPos.z);
 	DrawFormatString(100, 250, GetColor(0, 0, 0), "X:%.2f,Y:%.2f,Z:%.2f", mouseMovingPos.x, mouseMovingPos.y, mouseMovingPos.z);
 	DrawFormatString(100, 300, GetColor(0, 0, 0), "CamRotY:%.2f", camRotationY);
-	DrawFormatString(100, 350, GetColor(0, 0, 0), "temp_Y:%.2f", temp_angleY);
+	DrawFormatString(100, 350, GetColor(0, 0, 0), "temp_Y:%.2f", temp_angleY);*/
 }

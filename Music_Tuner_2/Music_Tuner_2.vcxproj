@@ -146,6 +146,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="FisheyePerspective.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameManager.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="FisheyePerspective.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="InGameState.cpp" />
     <ClCompile Include="Main.cpp" />

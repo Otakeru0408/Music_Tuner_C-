@@ -93,6 +93,9 @@
     <ClInclude Include="ShaderParam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FisheyePerspective.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Music_Tuner_2.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>6_Actor\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="FisheyePerspective.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

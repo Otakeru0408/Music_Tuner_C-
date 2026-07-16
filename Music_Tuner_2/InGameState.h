@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "Camera.h"
 #include "ShaderParam.h"
+#include "FisheyePerspective.h"
 
 #include <memory>
 #include <vector>
@@ -35,11 +36,7 @@ private:
 	VECTOR camAdditionalPos;
 
 	//fisheye perspective
-	int SceneScreen = 0;
-	int FishEyePS = 0;
-	FishEyeParam param;
-	int FishEyeCB = -1;
-	VERTEX2DSHADER Vert[6];
+	std::shared_ptr<FisheyePerspective> fisheyeSystem;
 
 	//models
 	int box01Handle;
